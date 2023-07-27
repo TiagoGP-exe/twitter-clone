@@ -1,0 +1,35 @@
+"use client";
+
+import { FC, useState } from "react";
+import { ButtonLogin } from "./button-login";
+import { Sidebar, SidebarClose } from "lucide-react";
+
+export const Header: FC = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setSidebarOpen((prev) => !prev);
+
+  return (
+    <header className="flex items-center justify-center w-full p-4 border-gray-700 border-b fixed h-20 bg-black/80 backdrop-blur-xl">
+      <main className="max-w-screen-xl w-full flex justify-between items-center translate-x-0">
+        <div className="flex gap-2 transition-all items-center justify-center">
+          {sidebarOpen ? (
+            <SidebarClose
+              size={24}
+              className="md:hidden active:scale-90 transition-all cursor-pointer"
+              onClick={toggleSidebar}
+            />
+          ) : (
+            <Sidebar
+              size={24}
+              className="md:hidden active:scale-90 transition-all cursor-pointer"
+              onClick={toggleSidebar}
+            />
+          )}
+          <h1 className="text-2xl font-bold text-blue-600">Twitter Clone</h1>
+        </div>
+        <ButtonLogin />
+      </main>
+    </header>
+  );
+};
