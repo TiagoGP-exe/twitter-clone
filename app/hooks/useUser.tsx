@@ -16,7 +16,7 @@ interface UserProviderProps {
 const UserContext = createContext<UserContext | null>(null);
 
 export const UserProvider: FC<UserProviderProps> = ({ children }) => {
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const [user, setUser] = useState<User | undefined>();
   const [isLoading, setIsLoading] = useState(true);
 

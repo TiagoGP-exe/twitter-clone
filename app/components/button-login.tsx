@@ -11,7 +11,7 @@ interface ButtonLoginProps {
 
 export const ButtonLogin: FC<ButtonLoginProps> = () => {
   const { user, isLoading } = useUser();
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   const { refresh } = useRouter();
 
   const handleSignIn = async () =>

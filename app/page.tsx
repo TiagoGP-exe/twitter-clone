@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { formattedDate } from "./lib/utils";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/sidebar";
+import { redirect } from "next/navigation";
 
 interface Tweet {
   id: string;
@@ -16,11 +17,17 @@ interface SelectQuery<T> {
 }
 
 export default async function Home() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient<Database>({ cookies });
 
-  const { data: tweets } = (await supabase
-    .from("tweets")
-    .select("*")) as SelectQuery<Tweet>;
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    redirect("/login");
+  }
+
+  const { data: tweets } = await supabase.from("tweets").select("*");
 
   return (
     <main className="flex min-h-screen flex-col w-full  items-center">
