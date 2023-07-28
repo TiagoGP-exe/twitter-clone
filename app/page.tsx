@@ -36,7 +36,7 @@ export default async function Home() {
 
   return (
     <main className="flex min-h-screen flex-col flex-1 justify-center items-center">
-      {/* <Header /> */}
+      <Header />
       <div className="border-x border-gray-800 max-w-screen-sm min-h-screen w-full">
         <NewTweet user={session.user} />
         <Tweets tweets={tweets} />
