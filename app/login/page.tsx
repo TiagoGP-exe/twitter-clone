@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ButtonLogin } from "../components/button-login";
 
+export const dynamic = "force-dynamic";
+
 export default async function Login() {
   const supabase = createServerComponentClient<Database>({ cookies });
 

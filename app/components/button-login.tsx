@@ -17,7 +17,7 @@ export const ButtonLogin: FC<ButtonLoginProps> = () => {
   const handleSignIn = async () =>
     await supabase.auth.signInWithOAuth({
       provider: "github",
-      options: { redirectTo: "http://localhost:3000/auth/callback" },
+      options: { redirectTo: `${location.origin}/auth/callback` },
     });
 
   const handleSignOut = async () => {
@@ -32,14 +32,14 @@ export const ButtonLogin: FC<ButtonLoginProps> = () => {
 
   return user ? (
     <button
-      className="w-20 p-2 rounded bg-red-600 active:scale-95 transition-all text-white text-sm "
+      className=" p-2 active:scale-95 transition-all text-sm text-gray-700 hover:text-white "
       onClick={handleSignOut}
     >
       SignOut
     </button>
   ) : (
     <button
-      className="w-20 p-2 rounded-lg bg-blue-600 active:scale-95 transition-all text-white text-sm"
+      className=" p-2 active:scale-95 transition-all text-sm text-gray-700 hover:text-white "
       onClick={handleSignIn}
     >
       Login

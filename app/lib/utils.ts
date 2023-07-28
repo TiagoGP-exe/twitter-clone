@@ -1,3 +1,8 @@
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+
 const verifyPlural = (
   value: number,
   custom?: {
@@ -46,18 +51,18 @@ const formattedDate = (createdAt: Date) => {
   }
 
   if (hours >= 1) {
-    return `${verifyPlural(hours)}h`;
+    return `${hours}h`;
   }
 
   if (minutes > 1) {
     return `${minutes} min`;
   }
 
-  if (seconds > 1) {
+  if (seconds > 1 && seconds < 60) {
     return `${seconds} sec`;
   }
 
   return "agora";
 };
 
-export { formattedDate };
+export { formattedDate, cn };

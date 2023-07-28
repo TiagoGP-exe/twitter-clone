@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useUser } from "../hooks/useUser";
 
 export const Sidebar = () => {
@@ -17,13 +16,13 @@ export const Sidebar = () => {
     <div className=" sm:flex flex-col  w-full max-w-[16rem] hidden ">
       <div className="flex flex-col py-4  pl-2 xl:pl-0 ">
         <div className="flex items-center gap-x-3 gap-y-4 flex-wrap justify-center lg:justify-start ">
-          <Image
+          {/* <Image
             src={valideUser.avatar}
             alt="avatar"
             width={42}
             height={42}
             className="rounded-full"
-          />
+          /> */}
           <div className="text-center lg:text-left hidden sm:block">
             <p className=" text-white/70 leading-6 truncate max-w-[16rem]">
               {valideUser.fullName}
