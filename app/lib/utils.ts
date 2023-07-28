@@ -9,6 +9,12 @@ const verifyPlural = (
 const formattedDate = (createdAt: Date) => {
   const diff = new Date().getTime() - createdAt.getTime();
 
+  const actualYear = new Date().getFullYear();
+
+  const year = createdAt.getFullYear();
+
+  const month = createdAt.toLocaleString("pt-BR", { month: "long" });
+
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
   const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -20,38 +26,35 @@ const formattedDate = (createdAt: Date) => {
   if (days >= 365) {
     const years = Math.floor(days / 365);
 
-    return `há ${years} ano${verifyPlural(years)}`;
+    return `${days} ${month}, ${year}`;
   }
 
   if (days >= 30) {
     const months = Math.floor(days / 30);
 
-    return `há ${months} m${verifyPlural(months, {
-      plural: "eses",
-      singular: "ês",
-    })}`;
+    return `${days} ${month}${actualYear > year ? `, ${year}` : ""}`;
   }
 
   if (days >= 7) {
     const weeks = Math.floor(days / 7);
 
-    return `há ${weeks} semana${verifyPlural(weeks)}`;
+    return `${weeks} week${verifyPlural(weeks)}`;
   }
 
   if (days > 1) {
-    return `há ${days} dia${verifyPlural(days)}`;
+    return `${days}d`;
   }
 
-  if (hours > 1) {
-    return `há ${hours} hora${verifyPlural(hours)}`;
+  if (hours >= 1) {
+    return `${verifyPlural(hours)}h`;
   }
 
   if (minutes > 1) {
-    return `há ${minutes} minuto${verifyPlural(minutes)}`;
+    return `${minutes} min`;
   }
 
   if (seconds > 1) {
-    return `há ${seconds} segundo${verifyPlural(seconds)}`;
+    return `${seconds} sec`;
   }
 
   return "agora";

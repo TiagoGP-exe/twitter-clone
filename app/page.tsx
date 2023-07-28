@@ -5,16 +5,13 @@ import { formattedDate } from "./lib/utils";
 import { Header } from "./components/Header";
 import { Sidebar } from "./components/sidebar";
 import { redirect } from "next/navigation";
+import Image from "next/image";
+import { MoreHorizontal } from "lucide-react";
 
-interface Tweet {
-  id: string;
-  created_at: string;
-  title: string;
-}
-
-interface SelectQuery<T> {
-  data: T[];
-}
+const maxName2 = (name: string) => {
+  const [first, last] = name.split(" ");
+  return `${first} ${last}`;
+};
 
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -27,7 +24,11 @@ export default async function Home() {
     redirect("/login");
   }
 
-  const { data: tweets } = await supabase.from("tweets").select("*");
+  const { data: tweets } = await supabase
+    .from("tweets")
+    .select("*, profiles(*)");
+
+  console.log(tweets);
 
   return (
     <main className="flex min-h-screen flex-col w-full  items-center">
@@ -36,15 +37,39 @@ export default async function Home() {
         <Sidebar />
 
         <div className="border-x border-gray-700 max-w-screen-sm w-full max-h-screen flex-1 min-h-screen overflow-y-scroll pb-20">
-          {[...tweets, ...tweets, ...tweets, ...tweets].map((tweet, i) => (
+          {tweets?.map((tweet, i) => (
             <div
               key={`${tweet.id}-${i}}`}
-              className="flex flex-col items-center justify-center w-full px-4 py-8 border-gray-700 border-b"
+              className="flex  w-full px-4 py-6 border-gray-700 border-b gap-y-4 justify-start items-start gap-4"
             >
-              <h1 className="text-3xl font-bold">{tweet.title}</h1>
-              <p className="text-gray-500">
-                {formattedDate(new Date(tweet.created_at))}
-              </p>
+              <Image
+                src={tweet?.profiles?.avatar_url!}
+                width={36}
+                height={36}
+                className="rounded-full"
+                alt={tweet?.profiles?.name!}
+              />
+              <div className="flex flex-col items-start w-full">
+                <div className="flex justify-between w-full items-center text-gray-500">
+                  <div className="flex gap-1 items-center">
+                    <p className="font-bold text-sm text-white">
+                      {maxName2(tweet?.profiles?.name!)}
+                    </p>
+                    <p className="text-sm">
+                      @{tweet?.profiles?.username.toLowerCase()}
+                    </p>
+                    {"•"}
+                    <p className=" text-xs">
+                      {formattedDate(new Date(tweet.created_at))}
+                    </p>
+                  </div>
+                  <MoreHorizontal
+                    className="text-gray-500 active:scale-90 transition-all cursor-pointer"
+                    size={16}
+                  />
+                </div>
+                <p className="text-sm">{tweet.title}</p>
+              </div>
             </div>
           ))}
         </div>
