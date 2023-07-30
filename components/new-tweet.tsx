@@ -19,7 +19,7 @@ export const NewTweet = ({ user }: { user: User }) => {
   };
 
   return (
-    <form className="p-4 border-b border-gray-800" action={addTweet}>
+    <form className="p-4 border-b" action={addTweet}>
       <div className="flex items-center gap-4">
         <div>
           <Image

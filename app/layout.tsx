@@ -1,10 +1,10 @@
 import "./globals.css";
 import { Outfit as FontSans } from "next/font/google";
 import type { Metadata } from "next";
-import { UserProvider } from "./hooks/useUser";
-import { ThemeProvider } from "./components/theme-provider";
-import { cn } from "./lib/utils";
-import { siteConfig } from "./config/site";
+import { ThemeProvider } from "../components/theme-provider";
+import { siteConfig } from "@/config/site";
+import { UserProvider } from "@/hooks/useUser";
+import { cn } from "@/lib/utils";
 
 const fontSans = FontSans({
   subsets: ["latin"],

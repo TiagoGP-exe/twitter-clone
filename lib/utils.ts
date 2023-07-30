@@ -46,11 +46,11 @@ const formattedDate = (createdAt: Date) => {
     return `${weeks} week${verifyPlural(weeks)}`;
   }
 
-  if (days > 1) {
+  if (days > 1 && days < 7) {
     return `${days}d`;
   }
 
-  if (hours >= 1) {
+  if (hours >= 1 && hours < 24) {
     return `${hours}h`;
   }
 

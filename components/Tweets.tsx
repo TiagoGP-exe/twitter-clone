@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { formattedDate } from "../lib/utils";
 import { MoreHorizontal } from "lucide-react";
 import { Likes } from "./likes";
 import { useEffect, experimental_useOptimistic as useOptimistic } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+import { formattedDate } from "@/lib/utils";
 
 const maxName2 = (name: string) => {
   const [first, last] = name.split(" ");
@@ -55,7 +55,7 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
   return optimisticTweets.map((tweet) => (
     <div
       key={tweet.id}
-      className="flex flex-1 px-4 py-6 border-gray-800 border-b gap-y-4 justify-start items-start gap-4 last:border-b-0"
+      className="flex flex-1 px-4 py-6 border-b gap-y-4 justify-start items-start gap-4 last:border-b-0"
     >
       <Image
         src={tweet.author.avatar_url!}
@@ -67,7 +67,7 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
       <div className="flex flex-col items-start w-full">
         <div className="flex justify-between w-full items-center text-gray-500">
           <div className="flex flex-1 gap-1 flex-wrap items-center pr-2 ">
-            <p className="font-bold text-sm text-white">
+            <p className="font-bold text-sm text-foreground">
               {maxName2(tweet.author.name!)}
             </p>
             <p className="text-sm">{tweet.author.username.toLowerCase()}</p>

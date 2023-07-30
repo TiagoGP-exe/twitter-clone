@@ -2,9 +2,10 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Header } from "./components/Header";
-import { Tweets } from "./components/Tweets";
-import { NewTweet } from "./components/new-tweet";
+import { Header } from "../components/Header";
+import { Tweets } from "../components/Tweets";
+import { NewTweet } from "../components/new-tweet";
+import { ModeToggle } from "@/components/ModeToggle";
 
 export const dynamic = "force-dynamic";
 
@@ -37,7 +38,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col flex-1 justify-center items-center">
       <Header />
-      <div className="border-x border-gray-800 max-w-screen-sm min-h-screen w-full">
+      <div className="border-x max-w-screen-sm min-h-screen w-full pt-16">
         <NewTweet user={session.user} />
         <Tweets tweets={tweets} />
       </div>
