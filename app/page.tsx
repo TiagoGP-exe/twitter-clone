@@ -1,6 +1,6 @@
+import Tweeets from "@/components/tweeets";
 import { Header } from "../components/Header";
 import { NewTweet } from "../components/new-tweet";
-import Tweets from "../components/tweets";
 
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
@@ -40,7 +40,7 @@ export default async function Home() {
       <Header />
       <div className="border-x max-w-screen-sm min-h-screen w-full pt-16 dark:border-foreground/30">
         <NewTweet user={session.user} />
-        <Tweets tweets={tweets} />
+        <Tweeets tweets={tweets} />
       </div>
     </main>
   );
