@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { ButtonLogin } from "./button-login";
 import { Sidebar, SidebarClose } from "lucide-react";
 import { ModeToggle } from "./mode-toggle";
+import Link from "next/link";
 
 export const Header: FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -27,7 +28,9 @@ export const Header: FC = () => {
               onClick={toggleSidebar}
             />
           )}
-          <h1 className="text-lg font-bold ">Home</h1>
+          <Link href="/">
+            <h1 className="text-lg font-bold cursor-pointer ">Home</h1>
+          </Link>
         </div>
         <ModeToggle />
         <ButtonLogin />

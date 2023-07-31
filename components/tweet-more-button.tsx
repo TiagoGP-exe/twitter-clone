@@ -12,24 +12,17 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 interface TweetMoreButtonProps {
   tweetId: string;
   isOwner: boolean;
+  onEdit: () => void;
 }
 
 export const TweetMoreButton: FC<TweetMoreButtonProps> = ({
   tweetId,
   isOwner,
+  onEdit,
 }) => {
   const supabase = createClientComponentClient<Database>();
   const onDelete = async () => {
     await supabase.from("tweets").delete().match({ id: tweetId });
-  };
-
-  const onEdit = async () => {
-    await supabase
-      .from("tweets")
-      .update({
-        title: "edited",
-      })
-      .match({ id: tweetId });
   };
 
   return (
@@ -39,7 +32,7 @@ export const TweetMoreButton: FC<TweetMoreButtonProps> = ({
           <MoreHorizontal size={14} />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent className="0" align="end">
         {isOwner ? (
           <>
             <DropdownMenuItem onClick={async () => await onDelete()}>
