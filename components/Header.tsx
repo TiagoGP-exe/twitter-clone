@@ -12,7 +12,7 @@ export const Header: FC = () => {
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
 
   return (
-    <header className="flex items-center justify-center w-full p-4 border-b fixed h-16 bg-background/70 backdrop-blur-xl z-10 top-0 dark:border-foreground/30">
+    <header className="flex items-center justify-center w-full p-4 border-b fixed h-16 bg-background/70 backdrop-blur-xl z-30 top-0 dark:border-foreground/30">
       <main className="max-w-screen-sm w-full flex justify-between items-center px-4 translate-x-0">
         <div className="flex gap-2 transition-all items-center justify-center">
           {sidebarOpen ? (
