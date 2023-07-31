@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 import { Header } from "../components/Header";
 import { Tweets } from "../components/tweets";
 import { NewTweet } from "../components/new-tweet";
-import { ModeToggle } from "@/components/mode-toggle";
 
 export const dynamic = "force-dynamic";
 
