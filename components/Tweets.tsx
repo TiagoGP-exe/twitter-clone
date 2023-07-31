@@ -6,8 +6,8 @@ import { useEffect, experimental_useOptimistic as useOptimistic } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { formattedDate } from "@/lib/utils";
-import { TweetMoreButton } from "./tweet-more-button";
-import { useUser } from "@/hooks/useUser";
+// import { TweetMoreButton } from "./tweet-more-button";
+// import { useUser } from "@/hooks/useUser";
 
 const maxName2 = (name: string) => {
   const [first, last] = name.split(" ");
@@ -15,7 +15,6 @@ const maxName2 = (name: string) => {
 };
 
 const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
-  const { user } = useUser();
   const router = useRouter();
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<
     TweetWithAuthor[],
@@ -79,9 +78,9 @@ const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
               {formattedDate(new Date(tweet.created_at))}
             </p>
           </div>
-          {tweet.author.id === user?.id && (
+          {/* {tweet.author.id === user?.id && (
             <TweetMoreButton isOwner={true} tweetId={tweet.id} />
-          )}
+          )} */}
         </div>
         <p className="text-sm flex-1 max-w-[90%] mt-1 break-all">
           {tweet.title}
