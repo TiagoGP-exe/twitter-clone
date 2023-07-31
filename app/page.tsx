@@ -1,11 +1,10 @@
+import { Header } from "@/components/Header";
+import { NewTweet } from "@/components/new-tweet";
+import { Tweets } from "@/components/tweets";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Header } from "../components/Header";
-import { Tweets } from "../components/tweets";
-import { NewTweet } from "../components/new-tweet";
-
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
