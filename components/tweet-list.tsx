@@ -16,7 +16,7 @@ const maxName2 = (name: string) => {
   return `${first} ${last}`;
 };
 
-const Tweeets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
+const TweetList = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
   const router = useRouter();
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<
     TweetWithAuthor[],
@@ -95,4 +95,4 @@ const Tweeets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
   ));
 };
 
-export default Tweeets;
+export default TweetList;
