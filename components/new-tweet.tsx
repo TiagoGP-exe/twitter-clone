@@ -19,17 +19,18 @@ export const NewTweet = ({ user }: { user: User }) => {
   };
 
   return (
-    <form className="p-4 border-b" action={addTweet}>
-      <div className="flex items-center gap-4">
-        <div>
-          <Image
-            src={user.user_metadata.avatar_url}
-            alt="user avatar"
-            width={48}
-            height={48}
-            className="rounded-full"
-          />
-        </div>
+    <form
+      className=" border-b dark:dark:border-foreground/30"
+      action={addTweet}
+    >
+      <div className="flex items-start p-4 gap-4">
+        <Image
+          src={user.user_metadata.avatar_url}
+          alt="user avatar"
+          width={48}
+          height={48}
+          className="rounded-full"
+        />
 
         <TestInput />
       </div>

@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { MoreHorizontal } from "lucide-react";
 import { Likes } from "./likes";
 import { useEffect, experimental_useOptimistic as useOptimistic } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { formattedDate } from "@/lib/utils";
+import { TweetMoreButton } from "./tweet-more-button";
+import { useUser } from "@/hooks/useUser";
 
 const maxName2 = (name: string) => {
   const [first, last] = name.split(" ");
@@ -14,6 +15,7 @@ const maxName2 = (name: string) => {
 };
 
 export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
+  const { user } = useUser();
   const router = useRouter();
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<
     TweetWithAuthor[],
@@ -55,7 +57,7 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
   return optimisticTweets.map((tweet) => (
     <div
       key={tweet.id}
-      className="flex flex-1 px-4 py-6 border-b gap-y-4 justify-start items-start gap-4 last:border-b-0"
+      className="flex flex-1 px-4 py-6 border-b gap-4 justify-start items-start last:border-b-0 dark:border-foreground/30"
     >
       <Image
         src={tweet.author.avatar_url!}
@@ -77,12 +79,13 @@ export const Tweets = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
               {formattedDate(new Date(tweet.created_at))}
             </p>
           </div>
-          <MoreHorizontal
-            className="text-gray-500 active:scale-90 transition-all cursor-pointer"
-            size={16}
-          />
+          {tweet.author.id === user?.id && (
+            <TweetMoreButton isOwner={true} tweetId={tweet.id} />
+          )}
         </div>
-        <p className="text-sm flex-1 max-w-[90%] break-all">{tweet.title}</p>
+        <p className="text-sm flex-1 max-w-[90%] mt-1 break-all">
+          {tweet.title}
+        </p>
         <div className="flex gap-4 items-center mt-4">
           <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
         </div>

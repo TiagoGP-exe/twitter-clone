@@ -32,14 +32,14 @@ export const ButtonLogin: FC<ButtonLoginProps> = () => {
 
   return user ? (
     <button
-      className=" p-2 active:scale-95 transition-all text-sm text-gray-700 hover:text-white "
+      className=" p-2 active:scale-95 transition-all text-sm text-foreground/50 hover:text-foreground "
       onClick={handleSignOut}
     >
       SignOut
     </button>
   ) : (
     <button
-      className=" p-2 active:scale-95 transition-all text-sm text-gray-700 hover:text-white "
+      className=" p-2 active:scale-95 transition-all text-sm text-foreground/50 hover:text-foreground "
       onClick={handleSignIn}
     >
       Login
