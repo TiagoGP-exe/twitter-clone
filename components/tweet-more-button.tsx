@@ -7,12 +7,7 @@ import {
 } from "./ui/DropdownMenu";
 import { Icons } from "./Icons";
 import { FC } from "react";
-import {
-  createClientComponentClient,
-  createServerActionClient,
-} from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 interface TweetMoreButtonProps {
   tweetId: string;

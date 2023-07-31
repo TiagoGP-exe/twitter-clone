@@ -1,7 +1,7 @@
 "use client";
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { Heart, ThumbsUp } from "lucide-react";
+import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export const Likes = ({
