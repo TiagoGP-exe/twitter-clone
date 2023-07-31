@@ -35,6 +35,14 @@ export const Tweet = ({
     const supabase = createClientComponentClient<Database>();
 
     await supabase.from("tweets").update({ title }).match({ id: tweet.id });
+
+    addOptimisticTweet({
+      ...tweet,
+      title,
+      user_has_liked_tweet: !tweet.user_has_liked_tweet,
+    });
+
+    setEnableEditState(false);
   };
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useWindowSize } from "@/hooks/useWindowSize";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
@@ -21,6 +22,7 @@ export const TestInput = ({
   initialTitle?: string;
   onSubmit?: (values: FormValues) => void;
 }) => {
+  const { width } = useWindowSize();
   const { register, reset, watch } = useForm<FormValues>({
     defaultValues: {
       title: initialTitle ?? "",
@@ -33,7 +35,14 @@ export const TestInput = ({
 
   const charachtersLeft = title?.length ?? 0;
 
-  const correctNumber = matches ? 45 : 70;
+  const charachtersLimit = {
+    mobile: edit ? Math.floor(width * 0.09) : Math.floor(width * 0.09),
+    desktop: 72,
+  };
+
+  const correctNumber = matches
+    ? charachtersLimit.mobile
+    : charachtersLimit.desktop;
 
   const rows = charachtersLeft ? Math.ceil(charachtersLeft / correctNumber) : 1;
 
