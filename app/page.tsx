@@ -5,7 +5,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { Tweets } from "@/components/tweets";
+import Tweets from "@/components/tweets";
 
 export const dynamic = "force-dynamic";
 
