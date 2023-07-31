@@ -1,6 +1,6 @@
-import { Header } from "@/components/Header";
-import { NewTweet } from "@/components/new-tweet";
-import { Tweets } from "@/components/tweets";
+import { Header } from "../components/Header";
+import { NewTweet } from "../components/new-tweet";
+import Tweets from "../components/tweets";
 
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
