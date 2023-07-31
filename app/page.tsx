@@ -1,4 +1,3 @@
-import Tweeets from "@/components/tweeets";
 import { Header } from "../components/Header";
 import { NewTweet } from "../components/new-tweet";
 
@@ -6,6 +5,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { Tweets } from "@/components/tweets";
 
 export const dynamic = "force-dynamic";
 
@@ -40,7 +40,7 @@ export default async function Home() {
       <Header />
       <div className="border-x max-w-screen-sm min-h-screen w-full pt-16 dark:border-foreground/30">
         <NewTweet user={session.user} />
-        <Tweeets tweets={tweets} />
+        <Tweets tweets={tweets} />
       </div>
     </main>
   );
