@@ -67,36 +67,40 @@ export const Tweet = ({
               {formattedDate(new Date(tweet.created_at))}
             </p>
           </div>
-          {tweet.author.id === user?.id && !enableEditState && (
-            <TweetMoreButton
-              onEdit={() => setEnableEditState(true)}
-              isOwner={true}
-              tweetId={tweet.id}
+          <div className="relative z-10">
+            {tweet.author.id === user?.id && !enableEditState && (
+              <TweetMoreButton
+                onEdit={() => setEnableEditState(true)}
+                isOwner={true}
+                tweetId={tweet.id}
+              />
+            )}
+          </div>
+        </div>
+        <div className="relative z-10  w-full">
+          {enableEditState ? (
+            <TestInput
+              initialTitle={tweet.title}
+              cancel={() => setEnableEditState(false)}
+              edit
+              onSubmit={editTweet}
             />
+          ) : (
+            <p className="text-sm flex-1 max-w-[90%] mt-1 break-all">
+              {tweet.title}
+            </p>
+          )}
+          {!enableEditState && (
+            <div className="flex gap-4 items-center mt-4 relative z-10 ">
+              <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
+            </div>
           )}
         </div>
-        {enableEditState ? (
-          <TestInput
-            initialTitle={tweet.title}
-            cancel={() => setEnableEditState(false)}
-            edit
-            onSubmit={editTweet}
-          />
-        ) : (
-          <p className="text-sm flex-1 max-w-[90%] mt-1 break-all">
-            {tweet.title}
-          </p>
-        )}
-        {!enableEditState && (
-          <div className="flex gap-4 items-center mt-4">
-            <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
-          </div>
-        )}
       </div>
 
       <div
         onClick={() => router.push(`/tweet/${tweet.id}`)}
-        className=" absolute top-0 left-0 right-0 bottom-0 -z-10"
+        className=" absolute top-0 left-0 right-0 bottom-0 cursor-pointer "
       ></div>
     </div>
   );

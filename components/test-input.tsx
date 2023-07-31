@@ -83,7 +83,9 @@ export const TestInput = ({
                 });
 
               const time = setTimeout(() => {
-                reset();
+                if (!onSubmit) {
+                  reset();
+                }
               }, 100);
 
               return () => clearTimeout(time);
