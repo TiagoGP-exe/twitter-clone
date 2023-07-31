@@ -9,6 +9,8 @@ import { formattedDate } from "@/lib/utils";
 // import { TweetMoreButton } from "./tweet-more-button";
 // import { useUser } from "@/hooks/useUser";
 
+export const dynamic = "force-dynamic";
+
 const maxName2 = (name: string) => {
   const [first, last] = name.split(" ");
   return `${first} ${last}`;
