@@ -5,9 +5,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, experimental_useOptimistic as useOptimistic } from "react";
 import { Tweet } from "./tweet";
 
-export const dynamic = "force-dynamic";
-
-const TweetList = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
+const TweetList = ({ tweets, userId }: { tweets: TweetWithAuthor[], userId: string }) => {
   const router = useRouter();
 
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<
@@ -23,6 +21,8 @@ const TweetList = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
 
     return newOptimisticTweets;
   });
+
+
 
   const supabase = createClientComponentClient();
 
@@ -49,6 +49,7 @@ const TweetList = ({ tweets }: { tweets: TweetWithAuthor[] }) => {
 
   return optimisticTweets.map((tweet) => (
     <Tweet
+      userId={userId}
       key={tweet.id}
       tweet={tweet}
       addOptimisticTweet={addOptimisticTweet}

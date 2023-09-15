@@ -20,9 +20,11 @@ interface FormProps {
 export const Tweet = ({
   tweet,
   addOptimisticTweet,
+  userId,
 }: {
   tweet: TweetWithAuthor;
   addOptimisticTweet: (newTweet: TweetWithAuthor) => void;
+  userId: string
 }) => {
   const [enableEditState, setEnableEditState] = useState(false);
 
@@ -92,7 +94,7 @@ export const Tweet = ({
           )}
           {!enableEditState && (
             <div className="flex gap-4 items-center mt-4 relative z-10 ">
-              <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
+              <Likes userId={userId} tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
             </div>
           )}
         </div>

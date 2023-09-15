@@ -30,7 +30,7 @@ export default async function Home() {
       ...tweet,
       author: Array.isArray(tweet.author) ? tweet.author[0] : tweet.author,
       user_has_liked_tweet: tweet.likes.some(
-        (like) => like.user_id === session?.user.id
+        (like) => like.user_id === session.user.id
       ),
       likes: tweet.likes.length,
     })) ?? [];
@@ -40,7 +40,7 @@ export default async function Home() {
       <Header />
       <div className="border-x max-w-screen-sm min-h-screen w-full pt-16 dark:border-foreground/30">
         <NewTweet user={session.user} />
-        <TweetList tweets={tweets} />
+        <TweetList userId={session.user.id} tweets={tweets} />
       </div>
     </main>
   );

@@ -53,7 +53,7 @@ export default async function Home({ params }: Props) {
     <main className="flex min-h-screen flex-col flex-1 justify-center items-center">
       <Header />
       <div className="border-x max-w-screen-sm min-h-screen w-full pt-16 dark:border-foreground/30">
-        <TweetList tweets={tweets} />
+        <TweetList userId={session.user.id} tweets={tweets} />
       </div>
     </main>
   );
