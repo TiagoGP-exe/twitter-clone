@@ -12,6 +12,7 @@ const verifyPlural = (
 ) => (value > 1 ? custom?.plural || "s" : custom?.singular || "s");
 
 const formattedDate = (createdAt: Date) => {
+  const day = createdAt.getDate();
   const diff = new Date().getTime() - createdAt.getTime();
 
   const actualYear = new Date().getFullYear();
@@ -28,16 +29,8 @@ const formattedDate = (createdAt: Date) => {
 
   const seconds = Math.floor(diff / 1000);
 
-  if (days >= 365) {
-    const years = Math.floor(days / 365);
-
-    return `${days} ${month}, ${year}`;
-  }
-
   if (days >= 30) {
-    const months = Math.floor(days / 30);
-
-    return `${days} ${month}${actualYear > year ? `, ${year}` : ""}`;
+    return `${day} ${month}${actualYear > year ? `, ${year}` : ""}`;
   }
 
   if (days >= 7) {
